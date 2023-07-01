@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div id="raiz" >
+
+    </div>
+
+    <script src = "https://unpkg.com/react@18.2.0/umd/react.development.js"> </script>
+
+    <script src = "https://unpkg.com/react-dom@18.0.0/umd/react-dom.development.js"> </script>
+
+    <script>
+    
+       const root= ReactDOM.createRoot(document.getElementById("raiz"));
+       
+       const arrayNombres = ["a","z","b","c","d","e","f","g","h"];
+
+       const lista = React.createElement("ul",null,arrayNombres.map(
+       (nombre,index) => {
+        return React.createElement("li",{key:index},nombre)
+    }));
+
+
+
+
+    const ordenarAscendente = (evento) => {
+        const lista = React.createElement("ul",null,arrayNombres.sort().map((nombre,index)=> { 
+            return React.createElement("li",{key:index},nombre) 
+        }))
+
+        root.render([contenedor,lista]); 
+    }
+
+    const ordenarDescendente = (evento) => {
+        const lista = React.createElement("ul",null,arrayNombres.sort().reverse().map((nombre,index)=> { 
+            return React.createElement("li",{key:index},nombre) 
+        }))
+
+        root.render([contenedor,lista]); 
+    }
+
+       const contenedor = React.createElement("div", {style: {backgroundColor: "yellow",display:"flex"},className:"contenedor-botones"}, [
+            React.createElement("button",{style: {backgroundColor: "blue",color: "white"},onClick:ordenarAscendente },"Orden ascendente" ),       
+            React.createElement("button",{style: {backgroundColor: "red",color: "white"},onClick:ordenarDescendente },"Orden descendente" )
+            ]);
+
+       root.render([contenedor,lista]); 
+
+
+    </script>
+
+</body>
+</html>
